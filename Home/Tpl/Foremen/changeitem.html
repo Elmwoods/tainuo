@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    <include file="Pub:key" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="white" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="__WJ__/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="__WJ__/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <form method="post">
+        <div class="login">
+            <div class="login_text">
+                <div class="login_bt">编辑项目组</div>
+                <div class="login_txt">
+                    <p>
+                        <em>项目名称：</em>
+                        <input type="text" name="title" value='<{$subject.title}>'  id="title" placeholder="项目名称"/>
+                    </p>
+                    <p>
+                        <em>工作日期：</em>
+                        <input type="text" readonly name="worktime" value="<{$subject.worktime}>"  data-field="date" id="day"  placeholder="工作日期"/>
+                    </p>
+
+                    <p>
+                        <em>选择服务员：</em>
+                        <i class="inputwide2" id="waitershow">
+                            <!--<label>张鑫、</label>--></i>
+                        <input type="button" value="选择服务员" class="applyBtn3"/>
+                    </p>
+
+                    <div class="login_dl">
+                        <input type="hidden" name="waiter" id="waiter" />
+                        <input type="submit" click="0" id="wsubmit" class="success" value="立即保存"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="find_nav_list1" style="right: -2000px; top: -2000px;">
+            <a class="search_logo cloose" href="javascript:void(0);"></a>
+            <h2>选择服务员</h2>
+            <div class="topsearchs">
+                <input class="inp_srh" name="keyboard" id="wkeyword" placeholder="姓名/手机号查找" />
+                <input  class="btn_srh bx_buys" id="wsearch" type="button" value="" >
+            </div>
+            <ul class="clearfix" id="waiters">	  
+                <foreach name="waiter" item="v">
+                    <li rel="<{$v.id}>" username="<{$v.username}>"><a href="#" ><p><{$v.username}></p><p><span>手机：<{$v.moble}></span></p></a></li>		
+                </foreach>
+            </ul>
+            <div class="service-btn2">
+                <a href="javascript:;" class="cloose">确认</a>
+            </div>
+        </div>
+    </form>
+    <script src="__WJ__/js/jquery-1.8.3.min.js"></script>
+<include file="Pub:mes" />
+<script src="__WJ__/js/laydate/laydate.js"></script>
+<script>
+    function err(mes) {
+        $('#wsubmit').attr('click', 0);
+        layer.msg(mes, {
+            time: 1500,
+        });
+        return false;
+    }
+    $(function () {
+
+        $('#wsubmit').click(function () {
+            if ($(this).attr('click') == 1) {
+                return false;
+            }
+            $(this).attr('click', 1);
+            var worktime = $('#day').val();
+            var title = $('#title').val();
+            if (title == '') {
+                $(this).attr('click', 0);
+                return err("项目名称不能为空！");
+            }
+            if (worktime == '') {
+                $(this).attr('click', 0);
+                return err("请选择工作日期！");
+            }
+            var label = $('#waitershow label');
+            if (label.length == 0) {
+                //return err("请选择服务员！");
+            }
+            var waiter = '';
+            $.each(label, function (ii, nn) {
+                waiter = waiter + label.eq(ii).attr('wid') + ',';
+            });
+            $('#waiter').val(waiter);
+        });
+
+        $(".applyBtn3").click(
+                function () {
+                    $(".find_nav_list1").animate({'right': '0', 'top': '0px'}, 300);
+                }
+        );
+        $(".cloose").click(
+                function () {
+                    $(".find_nav_list1").animate({'right': '-2000px', 'top': '-2000px'}, 300);
+                }
+        );
+        $('#wsearch').click(function () {
+            var keyword = $('#wkeyword').val();
+            $.ajax({
+                url: "<{:U('pub/waiter')}>",
+                data: {keyword: keyword},
+                success: function (data) {
+                    var label = $('#waitershow label');
+                    $('.find_nav_list1 ul').empty();
+                    $.each(data, function (i, n) {
+                        var classs = '';
+                        $.each(label, function (ii, nn) {
+                            if (n.id == label.eq(ii).attr('wid')) {
+                                classs = 'find_nav_cur';
+                            }
+                        });
+                        var li = '<li class="' + classs + '" rel="' + n.id + '" username="' + n.username + '"><a href="#" ><p>' + n.username + '</p><p><span>手机：' + n.moble + '</span></p></a></li>';
+                        $('.find_nav_list1 ul').append($(li));
+                    });
+                },
+                error: function (error) {
+                    alert("NETWORK ERROR!");
+                },
+            });
+        });
+        //服务员选择
+        $('.find_nav_list1 ul').on('click', 'li', function () {
+            var id = $(this).attr('rel');
+            var username = $(this).attr('username');
+            if ($(this).hasClass('find_nav_cur')) {
+                $(this).removeClass("find_nav_cur");
+                $('#waitershow').find("label[wid=" + id + "]").remove();
+            } else {
+                $(this).addClass("find_nav_cur");
+                //waitershow
+                var label = '<label wid="' + id + '">' + username + '、</label>';
+                $('#waitershow').append($(label));
+            }
+            return false;
+        });
+    });
+</script>
+<script>;
+    laydate.render({
+        elem: '#day'
+    });
+    laydate.render({
+        elem: '#time'
+        , type: 'datetime'
+    });
+    laydate.render({
+        elem: '#time2'
+        , type: 'datetime'
+    });
+    $(function () {
+        var h = $(window).height() - 170;
+        $('.find_nav_list1 ul').css({height: h + 'px'});
+    });
+    $(window).resize(function () {
+        var h = $(window).height() - 170;
+        $('.find_nav_list1 ul').css({height: h + 'px'});
+    });
+
+</script>
+
+</body>
+</html>

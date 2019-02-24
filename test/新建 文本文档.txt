@@ -1,0 +1,67 @@
+ni8_admin_sessions  管理员登录内存保存
+ni8_admin           管理员
+ni8_admin_group     管理员组
+ni8_admin_log       管理操作日记【管理登录日记】
+ni8_typebrand       品牌分类qy=1
+ni8_typeprokz       扩展分类qy=1 价格参数qy=2
+ni8_typepro         产品分类qy=1
+ni8_banner          首页分类广告
+ni8_pro             产品管理
+ni8_sku             SKU
+ni8_typepnews       新闻分类（qy=1酒讯信息）（qy=2酒问信息）
+ni8_pnews           新闻信息
+ni8_sskey           搜索关键字
+ni8_advs            广告位
+ni8_advs_con        广告内容
+ni8_region          地区
+ni8_postt           运费方式
+ni8_posttp          地区运费
+ni8_yhq             优惠券
+ni8_yhqlq           优惠券领取
+ni8_web             站点设置
+ni8_pnewspl         新闻评论
+ni8_gwc             购物车
+ni8_message         产品评论qy=0
+ni8_scj             收藏夹qy=1浏览记录qy=0
+ni8_address         收货地址
+ni8_jl              酒币记录|qy=1购买获取积分(passed=0)qy=2消费记录(passed=1)qy=3返利记录(passed=0)
+ni8_pjl             金额流水|qy=1充值（passed=0失败 passed=1成功）qy=2消费qy=3返利qy=4提现
+ni8_dd              订单
+ni8_ddp             订单
+ni8_xpress          快递公司
+ni8_mail_mod        消息模板
+ni8_weixin          微信设置
+ni8_weixink         微信回复
+ni8_weixinkey       微信关键字
+ni8_weixmenu        微信菜单
+ni8_weixuser        微信会员
+ni8_cron            计划任务
+ni8_stop_ip         锁定IP
+ni8_filter_keyword  关键字过滤
+ni8_user            会员数据
+ni8_user_sessions   会员登录日记
+ni8_infor           单文信息
+ni8_verify          实名认证
+ni8_yhk             银行卡
+ni8_yhtx            提现
+ni8_rebates         佣金
+ni8_pay             支付
+ni8_page_rec        统计
+ni8_page_view       记录
+ni8_webmessage      站内信发送给谁
+ni8_webmessagetext  站内信内容
+ni8_websysmessag    判断用户是否读取
+ni8_fp              发票
+ni8_tk              退款
+ni8_yy              预定
+
+ni8_keys            关键字
+ni8_help
+ni8_typehelp
+ni8_kf
+ni8_link
+ni8_tkaddress
+
+后台
+
+tkpassed(0=待处理11=拒绝12=通过13=取消)

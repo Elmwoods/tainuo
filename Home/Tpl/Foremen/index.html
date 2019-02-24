@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    <include file="Pub:key" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="white" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="__WJ__/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="__WJ__/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="wx clearfix">
+        <div class="wx-tab"><a href="<{:U('foremen/bd')}>"><img src="__WJ__/images/mu1.png"></a></div>
+        <div class="wx-text"> <i><img src="<{$user.headimgurl}>"></i>
+            <p><{$user.nickname}></p>
+            <h2>领班</h2>
+        </div>
+    </div>
+    <div class="foreman-list">
+        <h1>我的项目组</h1>
+        <ul class="clearfix">
+            <foreach name="subject" item="v">
+                <li>
+                    <h2><{$v.title}></h2>
+                    <p>工作日期：<span><{$v.worktime}></span></p>
+                    <p>领班提成：<span><{$v.rebate|default=0}>元</span></p>
+                    <p>总工时：<span><{$v.hours|default=0}>小时</span></p>
+                    <p>总薪资：<span><{$v.reward|default=0}>元</span></p>
+                    <div><a href="<{:U('foremen/changeitem',array('id'=>$v['id']))}>" ><img src="__WJ__/images/edi.png"/>编辑</a><a href="javascript:;" class="remove" rid="<{$v.id}>"><img src="__WJ__/images/del.png"/>解除组</a><a href="<{:U('foremen/flist',array('id'=>$v['id']))}>"><img src="__WJ__/images/ment.png"/>管理</a></div>
+                </li>
+            </foreach>
+
+            <i <if condition="!empty($subject)">style="display:none;"</if>>暂无项目组</i>
+        </ul>
+    </div>
+    <div class="service-btn"><a href="<{:U('foremen/additem')}>">创建项目组</a></div>
+    <script src="__WJ__/js/jquery-1.8.3.min.js"></script>
+    <include file="Pub:mes" />
+
+
+<script>
+    $('.remove').on('click', function () {
+        var id = $(this).attr('rid');
+        var a = $(this);
+        layer.msg('确定解除项目组？', {
+            time: 0 //不自动关闭
+            , btn: ['确定', '取消']
+            , yes: function (index) {
+                $.ajax({
+                    url: "<{:U('foremen/index')}>",
+                    type:'POST',
+                    data: {id: id},
+                    success: function (data) {
+                        if(data.code == 1){
+                            a.parents('li').remove();
+                            layer.close(index);
+                            layer.msg('已成功解除', {
+                                time: 1000 //1秒关闭
+                            });
+                            if($('.foreman-list ul li').length == 0){
+                                $('.foreman-list ul i').show();
+                            }
+                        }else{
+                            layer.close(index);
+                            layer.msg('NETWORK ERROR!', {
+                                time: 1000 //1秒关闭
+                            });
+                        }
+                    },
+                    error: function (error) {
+                        //alert("NETWORK ERROR!");
+                        layer.close(index);
+                        layer.msg('NETWORK ERROR!', {
+                            time: 1000 //1秒关闭
+                        });
+                    },
+                });
+
+            }
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        var pmH = $(window).height() - 125;
+        $(".foreman-list ul").height(pmH);
+    });
+</script>
+</body>
+</html>

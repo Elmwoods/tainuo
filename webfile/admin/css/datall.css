@@ -1,0 +1,166 @@
+body {
+    color: #333;
+    font: 12px Arial,Verdana,Helvetica,sans-serif;
+    text-align: center;
+}
+body, div, dl, dt, dd, ul, ol, li, pre, form, fieldset, blockquote, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+input, select {
+    vertical-align: middle;
+}
+table {
+    margin: 0 auto;
+}
+table, td, tr, th ,input{
+    font-size: 12px;
+}
+a{
+    text-decoration: none;
+}
+
+/*---上--- */
+
+.tip{color:#F2F4F6}
+.so_main {
+    margin: 0 10px;
+    text-align: left;
+}
+.so_main .zj_sub{
+    height: 25px;
+    background: #FFFFFF;
+    border:1px solid #7F9DB9;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.Toolbar_inbox {
+    background-color: #d2dbea;
+    border-bottom: 1px solid #c8cfda;
+    line-height: 26px;
+    padding: 5px;
+    height: 30px
+}
+.Toolbar_inbox .u9s_text{
+   height: 20px;
+   border: 1px solid #7F9DB9;
+   border-radius: 5px;
+}
+.u9_search{ height:45px; background:#f3f3f3; margin:20px 0; padding-left:20px;}
+.u9_search li{ display:inline; line-height:45px; height:45px;}
+.u9_search li input{ padding:8px;}
+
+/*---下--- */
+
+.list {
+    padding-top: 13px;
+}
+
+.list table th {
+    background-color: #f2f4f6;
+    border-right: 1px solid #ccc;
+    color: #7d7d7d;
+    font-weight: normal;
+    height: 35px;
+    padding-left: 5px;
+    text-align: left;
+}
+
+.list td {
+    border-bottom: 1px solid #e3e6eb;
+    border-right: 1px solid #e3e6eb;
+    padding: 6px 0 6px 5px;
+    width: 30%;
+}
+
+
+.lx {
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.lx dt {
+    text-align: right;
+}
+
+.lx dt, .lx dd {
+    float: left;
+    width: 40%;
+}
+
+.lx dd {
+    text-align: left;
+    text-indent: 10px;
+}
+
+.lx dt, .lx dd {
+    float: left;
+    width: 40%;
+}
+
+
+
+
+/*逾期 king*/
+.excess{
+    width:100%;
+    height:150px;
+    border-top:1px solid #ccc
+}
+.excess .excess_t{
+    height: 30px;
+    background: #F2F4F6;
+    color: #7d7d7d;
+    padding-left: 5px;
+    line-height: 20px
+}
+.excess .excess_tit{
+    padding-left: 8px;
+    height: 25px;
+    line-height: 25px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.excess .excess_tit span{
+    display: inline-block;
+}
+
+.excess .excess_tab{
+    width:  100%;
+    height: 100%
+}
+
+.excess .excess_tab .tab1{
+    width:150px;max-width:150px
+}
+
+.excess .excess_tab .tab2{
+    width:75px;max-width:75px
+}
+
+.excess .excess_tab .tab3{
+    width:65px;max-width:65px
+}
+
+.excess .excess_tab .tab4{
+    width:75px;max-width:75px
+}
+
+.excess .excess_tab td{
+    width: auto;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.excess .excess_tab a{
+   color: #333333;
+   transition:color 300ms ease 0s
+}
+
+.excess .excess_tab a:hover{
+    color: #FF0000
+}
