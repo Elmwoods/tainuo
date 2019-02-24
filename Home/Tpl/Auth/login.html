@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    <include file="Pub:key" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="white" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="__WJ__/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="__WJ__/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="login">
+        <div class="login_text">
+            <div class="login_bt">领班登录</div>
+            <form method="post" id="lblogin">
+                <div class="login_txt">
+                    <p>
+                        <input type="text" name="username" required="required" id="username" placeholder="请输入账号"/>
+                    </p>
+                    <p>
+                        <input type="password" id="password" name='password' required="required" class="text" placeholder="登录密码">
+                    </p>
+                    <p>
+                        <input type="text" name="captcha" required="required" class="inputwide" placeholder="验证码"/>
+                        <img id='cp' src="<{:U('auth/verify')}>">
+                        <!--onclick="this.src = this.src + '?' + Math.random();" -->
+                        
+                    </p>
+                    <div class="login_dl">
+                        <input type="submit" value="登录" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="__WJ__/js/jquery-1.8.3.min.js"></script>
+    <script>
+                            $(function () {
+                                $('#cp').click(function(){
+                                   $("#cp").attr('src', "<{:U('auth/verify',array('err'=>1))}>" + '?' + Math.random()); 
+                                });
+                                setTimeout(function () {
+                                    //
+                                }, 1000);
+                            });
+    </script>
+<include file="Pub:mes" />
+</body>
+</html>

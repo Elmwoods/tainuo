@@ -1,0 +1,5 @@
+User-agent: *
+Disallow:/ht
+Disallow:/we
+Disallow:/up
+Disallow:/c

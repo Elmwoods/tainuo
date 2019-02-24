@@ -1,0 +1,85 @@
+@charset "utf-8";
+/* CSS Document */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption{ margin: 0 ; padding: 0; border: 0; outline: 0;background:transparent;outline:none;}
+fieldset, img { border: 0; }div {
+    text-align: left;
+}
+address, caption, cite, code, dfn, em, strong, th, var { font-style: normal; }
+em,i{font-style:normal;}
+:focus{outline:0 none;}
+a { text-decoration: none;outline:none; }
+
+.clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.clearfix { display: inline-block; }
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+body { font: 12px "微软雅黑"; background: #fff; color: #535353; }
+a { color: #535353; text-decoration: none;}
+a:hover {color: #ff6633;}a:hover{color:#004c91;}
+.fl { float: left; }
+.fr { float: right; }
+ul li{list-style: none;}
+.center{width:1004px;margin:0 auto;height:auto;}
+.current{display: block;}
+.hide{display:none;}
+.clear{ clear:both;}
+.undis{ display:block;}
+.dis{ display:none;}
+
+/*top*/
+.h_t{height:78px;line-height:78px;vertical-align:middle;width:100%;background-color:#189FE1;background:url(../images/top_bg1.jpg);color:#fff;text-align:right;}
+.h_t .logo{display:block; float:left; width:280px;}
+.h_t .tm{ float:left; text-align:left;}
+.h_t .tm .main-nav{}
+.h_t .tm .main-nav li{ float:left; height:70px;width:80px; line-height:78px; text-align:center;}
+.h_t .tm .main-nav li a{ color:#FFFFFF; font-weight:bold; font-size:14px;}
+.h_t .tm .main-nav .active{ background-color:#FFFFFF;}
+.h_t .tm .main-nav .active a{ color:#000000;}
+.h_t .tm .main-nav li:hover{ background-color:#1B67AF;}
+.h_t .tm .main-nav li:hover a{ color:#FFFFFF;}
+.h_t .tu{ float:right; line-height:78px; height:78px; color:#FFFFFF;}
+.h_t .tu img{vertical-align:middle; padding:0px 2px;}
+
+.leftbox{ width:220px; position:absolute; top:80px; left:0px; background-color:#fff;color:#1C8FC6; height:auto;}
+.leftbox .tit{ height:34px; line-height:34px; background:#f2f2f2; font-size:14px; font-weight:bold; padding-left:20px; width:200px;border-top:10px solid #0C81B7;}
+
+.leftbox .menuBox{ width:100%; overflow:auto;overflow-x:hidden;overflow-y:hidden;}
+.leftbox .menuBox div{ width:195px; margin:5px 0px 0px 20px; line-height:28px;}
+.leftbox .menuBox div h3{ font-size:14px; font-weight:bold; background-position:left -26px; padding-left:16px; cursor:pointer;background-image:url(../images/clossopen.png); background-repeat:no-repeat;}
+.leftbox .menuBox div h3.close{ background-position:left 7px;}
+.leftbox .menuBox div ul{ width:149px; margin-left:16px;}
+.leftbox .menuBox div ul li{ padding-left:21px; background-image:url(../images/arrow-right.png) ; background-repeat:no-repeat; background-position:10px center;}
+.leftbox .menuBox div ul li a{ color:#004c91;}
+.leftbox .menuBox div ul li a:hover,.leftbox .menuBox div ul li a.on{ color:#004c91;}
+.leftbox .menuBox div ul li a.on{ font-weight:bold;}
+
+.menuBox1{ width:100%; overflow:auto; overflow-x:hidden;background-color:#fff;color:#1C8FC6;height:auto;}
+.menuBox1 div{ width:195px; margin:5px 0px 0px 20px; line-height:28px;}
+.menuBox1 div h3{ font-size:14px; font-weight:bold; background-position:left -26px; padding-left:16px; cursor:pointer;background-image:url(../images/clossopen.png); background-repeat:no-repeat;}
+.menuBox1 div h3.close{ background-position:left 7px;}
+.menuBox1 div ul{ width:149px; margin-left:16px;}
+.menuBox1 div ul li{ padding-left:21px; background-image:url(../images/arrow-right.png) ; background-repeat:no-repeat; background-position:10px center;}
+.menuBox1 div ul li a{ color:#004c91;}
+.menuBox1 div ul li a:hover,.leftbox .menuBox div ul li a.on{ color:#004c91;}
+.menuBox1 div ul li a.on{ font-weight:bold;}
+
+
+.centerBar{ width:11px; background-color:#F6F6F6; border-left:2px solid #DCDCDC; border-right:1px solid #D5D5D5; height:100%; position:absolute; left:220px; top:80px; cursor:pointer; background-position:2px center;background-image:url(../images/srollbar.png); background-repeat:no-repeat;}
+.barclose{ background-position:-11px center;}
+
+.rightbox{ position:absolute; left:234px; top:80px; overflow:hidden;}
+
+.nbt{
+background: none repeat scroll 0 0 #F2F2F2;
+    border-top: 10px solid #0C81B7;
+    font-size: 14px;
+    font-weight: bold;
+    height: 34px;
+    line-height: 34px;
+    padding-left: 20px;
+    width: 200px;
+	margin-top:10px;
+	color:#1C8FC6;
+	}
+
+/*nb*/

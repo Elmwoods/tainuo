@@ -1,0 +1,51 @@
+/* CSS Document */
+.page_tit {
+    color: #1E325C;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 40px;
+}
+.form2 {
+    padding-top: 10px;
+}
+.form2 dl {
+ width:100%;
+}
+.form2 dt {
+    color: #333333;
+    float: left;
+    margin: 0;
+    padding: 2px 0px 0px;
+    text-align: right;
+    width: 20%;
+}
+.form2 dt span {
+    color: #FF0000;
+}
+.form2 dd {   
+    min-height: 15px;
+    padding: 2px 0 2px 5px;
+    vertical-align: middle;
+	text-align:left;
+	width:80%;
+
+}
+
+.lineD {
+    border-bottom: 1px dashed #E2E2E2;
+	height:30px;
+	margin-bottom:0px;
+}
+.lineD dd span {
+    color: #7D7D7D;
+    margin-left: 10px;
+}
+.lineD .input {
+    color: #333333;
+    padding: 2px;
+    width: 350px;
+}
+.page_btm {
+    border-top: 1px solid #9CB8CC;
+    padding: 18px 0px 18px 20%;
+}

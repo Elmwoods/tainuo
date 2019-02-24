@@ -1,0 +1,18 @@
+<script src="__WJ__/js/layer/layer.js"></script>
+<script>
+    function err(mes) {
+        layer.msg(mes, {
+            time: 1500,
+        });
+    }
+</script>
+<if condition='!empty($err)'>
+    <script>
+        $(function () {
+            layer.msg('<{$err}>', {
+                time: 1500,
+            });
+        });
+    </script>
+</if>
+

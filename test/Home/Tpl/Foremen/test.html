@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+    $('.qrcode-back').click(function () {
+        var title = $(this).data('title');
+        console.log(title);
+        html2canvas(document.body).then(function(canvas) {
+            document.body.appendChild(canvas);
+        });
+        //页面层
+//        let name_time = title
+        let str = `<div id="html_canvas" style="background: #f1f0f0;width: 200px;height: 200px;display: flex;flex-flow: column;align-items: center;">
+			<p id="" style="text-align: center;margin: 15px;">${title}</p>
+			<div id="qrcode" style="width: 100px;height: 100px;"></div>
+		</div>`
+        console.log(str)
+        layer.open({
+            title:"二维码",
+            type: 1,
+            skin: 'layui-layer-rim', //加上边框
+//            area: ['250px', '250px'], //宽高
+            content: str
+
+        });
+        var id = $(this).data('id');
+        var domain = document.domain;
+//        var url = "http://" + domain + "/test/wz.php/index_join_id_" + id;
+        var url = "http://" + domain + "/test/wz.php/index_join_id_" + id;
+
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            width : 100,
+            height : 100,
+            text: url,
+//            text: "http://baidu.com"
+        });
+        html2canvas(document.getElementById("html_canvas")).then(function(canvas) {
+            console.log(canvas)
+            $("#html_canvas").html("");
+            $("#html_canvas").append(canvas);  //这里是直接
+//			            document.body.appendChild(canvas);
+        });
+
+
+        laydate.render({
+            elem: '#time1'
+        });
+        laydate.render({
+            elem: '#time2'
+        });
+        console.log(id);
+        console.log(url);
+//        var qrcode = new QRCode(document.getElementById("qrcode"), {
+//            width : 100,
+//            height : 100,
+//            text: url
+////            text: "http://tn9.top/test/wz.php/index_join_id_" + id
+//        });
+    });
+
+
+</script>
+</body>
+</html>

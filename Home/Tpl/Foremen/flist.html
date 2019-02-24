@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    <include file="Pub:key" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="white" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="__WJ__/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="__WJ__/css/style.css" rel="stylesheet">
+    <style>
+        .foreman-service ul li a { width:calc(100% - 40px); float:left;}
+        .foreman-service ul li label { float:left; display:block; width:35px; height:50px;}
+        .foreman-service ul li label .input-del { width:15px; height:15px; border:1px solid #ccc; margin-top:16px;}
+        .service-btn a {
+            background: #0cb9f3 none repeat scroll 0 0;
+            border-radius: 8px;
+            color: #fff;
+            display: block;
+            font-family: "微软雅黑";
+            font-size: 12px;
+            height: 40px;
+            line-height: 40px;
+            margin: 10px auto;
+            text-align: center;
+            width: 90%;
+        }
+    </style>
+</head>
+<body>
+    <div class="foreman-service" style=" margin-bottom:20px;">
+        <h1><{$subject.title}></h1>
+        <form method="" >
+            <div class="topsearchs">
+                <input class="inp_srh" style="color:#666" name="keyboard" value="<{$keyboard}>" id="wkeyword" placeholder="姓名/手机号查找" />
+                <input  class="btn_srh bx_buys" id="wsearch" type="submit" value="" >
+            </div>
+        </form>
+        <form method="" id="deletef" action="<{:U('foremen/deleteitem')}>">
+            <input name="subject_id" value="<{$subject.id}>" type="hidden"/>
+            <ul class="clearfix">
+                <foreach name="list" item="v">
+                    <li>
+                        <label><input class="input-del" name="id[]" value="<{$v.id}>" type="checkbox"/></label>
+                        <a href="<{:U('foremen/fshow',array('id'=>$v['id']))}>"><p><em><span><{$key+1}>、<{$v.wait.username}></span><span>手机：<{$v.wait.moble}></span></em>
+                            <if condition="$v['is_con'] == 1"><i>已确认</i></if>
+                            </p><img src="__WJ__/images/jt.png"/></a>
+                    </li>
+                </foreach>
+
+            </ul>
+        </form>
+    </div>
+    <!--<{:U('foremen/changeitem',array('id'=>$subject['id']))}>-->
+    <div class="service-btn">
+        <a id="deleteBtn" style="width:25%;margin-left:9%;margin-right: 0;display: inline-block;" href="#">删除选择</a><a style='width:25%;margin-left:3%;margin-right: 0;display: inline-block;' id="changeall" href="<{:U('foremen/changeall',array('id'=>$subject['id']))}>">批量编辑</a><a style='display: inline-block;width:25%; margin-left:3%;' href="<{:U('/foremen')}>">返回</a></div>
+    <script src="__WJ__/js/jquery-1.8.3.min.js"></script>
+<include file="Pub:mes" />
+<script>
+    $(document).ready(function () {
+        $('#deleteBtn').click(function () {
+            var length = $('.input-del:checked').length;
+            if (length == 0) {
+                return false;
+            }
+            if (window.confirm("确定删除选择项么？")) {
+                $('#deletef').attr("action", "<{:U('foremen/deleteitem')}>");
+                $('#deletef').submit();
+            }
+            return false;
+        });
+        $('#conBtn').click(function () {
+            var length = $('.input-del:checked').length;
+            if (length == 0) {
+                return false;
+            }
+            if (window.confirm("是否确认？")) {
+                $('#deletef').attr("action", "<{:U('foremen/confirm')}>");
+                $('#deletef').submit();
+            }
+            return false;
+        });
+        /*$('#changeall').click(function () {
+            var length = $('.input-del:checked').length;
+            if (length == 0) {
+                return false;
+            }
+            $('#deletef').attr("action", "<{:U('foremen/changeall')}>");
+            $('#deletef').submit();
+            return false;
+        });*/
+        var pmH = $(window).height() - 85;
+        $(".foreman-service ul").height(pmH);
+    });
+</script>
+</body>
+</html>
