@@ -6,7 +6,7 @@ if (!defined("ni8"))
 class PublicAction extends Action {
 
 //初始化6-1
-    public function _initialize() {
+/*    public function _initialize() {
         bcscale(2);
 
         define('ROOT_PATH', dirname(str_replace('PublicAction.class.php', '', str_replace('\\', '/', __FILE__))));
@@ -100,7 +100,7 @@ class PublicAction extends Action {
             $this->assign('err', $err);
         }
     }
-
+*/
 //SQL执行6-1
     public function dbquery($sql) {
         $news = M();

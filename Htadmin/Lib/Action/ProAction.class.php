@@ -115,6 +115,7 @@ class ProAction extends PublicAction {
     }
 
     public function subject() {
+        dump(1);die;
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $allid = $_POST['articleid'];
             foreach ($allid as $key => $id) {

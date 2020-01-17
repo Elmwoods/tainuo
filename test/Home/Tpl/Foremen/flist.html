@@ -32,7 +32,7 @@
             <div class="topsearchs" class="clearfix" style="height:auto;">
                 <p class="clearfix" style="margin-bottom: 10px;margin-top: 5px;">
                     <input type="text" class="form-control"  name="keyboard" value="<{$keyboard}>"  style="width: 100%;"  placeholder="姓名/手机号查找"/>
-                </p>   
+                </p>
                 <p class="clearfix"  style="margin-bottom: 10px;">
                     <select name="status" id='status' style="width:65%;float: left;margin-right: 5%"  class="form-control" >
                         <option value="0">选择状态</option>
@@ -42,11 +42,12 @@
                     </select>
                     <button type="submit" style="width:30%;float: left;margin-bottom: 10px;" class="btn btn-default">搜索</button>
                     <button type="button" style="width:100%;" class="btn btn-default allselected">全选</button>
-                </p> 
+                </p>
             </div>
         </form>
         <form method="" id="deletef" action="<{:U('foremen/deleteitem')}>">
             <input name="subject_id" value="<{$subject.id}>" type="hidden"/>
+            <input name="id" value="<{$subject.id}>" type="hidden"/>
             <ul class="clearfix">
                 <foreach name="list" item="v">
                     <li class="clearfix">
@@ -78,7 +79,8 @@
     <div class="service-btn">
         <a id="deleteBtn" style="width:20%;margin-left:3%;margin-right: 0;display: inline-block;" href="#">删除选择</a>
         <a style='width:20%;margin-left:3%;margin-right: 0;display: inline-block;' id="changeall" href="<{:U('foremen/changeall',array('id'=>$subject['id']))}>">批量编辑</a>
-        <a style='width:20%;margin-left:3%;margin-right: 0;display: inline-block;' id="send"  href="<{:U('foremen/wage',array('id'=>$subject['id']))}>">发放工资</a>
+        <!-- <a style='width:20%;margin-left:3%;margin-right: 0;display: inline-block;' id="send"  href="<{:U('foremen/wage',array('id'=>$subject['id']))}>">发放工资</a> -->
+        <a style='width:20%;margin-left:3%;margin-right: 0;display: inline-block;' id="send"  href="javascript:void(0);">发放工资</a>
         <a style='display: inline-block;width:20%; margin-left:3%;' href="<{:U('/foremen')}>">返回</a></div>
     <script src="__WJ__/js/jquery-1.8.3.min.js"></script>
 <include file="Pub:mes" />
@@ -106,11 +108,17 @@
             return false;
         });
         $('#send').click(function () {
+            var flag = $(this).attr('flag');
+            if (flag){
+                return false;
+            }
             var length = $('.input-del:checked').length;
             if (length == 0) {
                 return false;
             }
+
             if (window.confirm("确认将选中项发放工资？")) {
+                $('#send').attr('flag', true);
                 $('#deletef').attr("action", "<{:U('foremen/wage')}>");
                 $('#deletef').submit();
             }

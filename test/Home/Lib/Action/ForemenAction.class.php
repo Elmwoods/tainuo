@@ -19,7 +19,7 @@ class ForemenAction extends PublicAction {
             }
             $this->user = $user;
         } else {
-            //echo ACTION_NAME;	
+            //echo ACTION_NAME;
             //推荐用户
             $tgcode = $this->_get('tgcode');
             if (!empty($tgcode)) {
@@ -67,6 +67,8 @@ class ForemenAction extends PublicAction {
     }
 
     public function index() {//主页
+        // dump($_SERVER);
+        // die;
         if (IS_POST) {
             $id = (int) $_POST['id'];
             $find = M('subject')->where("user_id = {$this->user['id']} and id = {$id}")->find();
@@ -121,6 +123,8 @@ class ForemenAction extends PublicAction {
 
             $info = M('subject')->where("passed = 1 and user_id = {$this->user['id']}  and is_hs = 0 " . $where)
                 ->field("count(*) as times,sum(hours) as hourss,sum(reward) as rewards")->find();
+            // var_dump($info);
+            // die;
             $this->assign(array(
                 'hotel' => $hotel,
                 'info' => $info,
@@ -164,11 +168,11 @@ class ForemenAction extends PublicAction {
             $sum = 0;
             foreach ($waiter as $k => $v) {
                 if ($v) {
-                    
+
                     // 时薪 190223
                     $level_id = $this->finds('waiter',  'id = '. $v, 'id desc', true)['level'];
                     $hourly_wage = $this->finds('level', 'id = '. $level_id, 'id desc', true)['price'];
-                
+
                     $hour = round((strtotime($offtime) - strtotime($ontime) ) / (60 * 60) - $_POST['break'] / 60, 2);
                     $reward = bcadd($reward, bcmul($hour, $_POST['wage']));
                     $sub = bcsub($this->webset['wage'], $_POST['wage']);
@@ -210,7 +214,7 @@ class ForemenAction extends PublicAction {
             $this->redirect('foremen/index');
         }
         // 当前字符串哪种编码格式
-        // $encode = mb_detect_encoding($_SESSION['user_name'], array("ASCII",'UTF-8',"GB2312","GBK",'BIG5')); 
+        // $encode = mb_detect_encoding($_SESSION['user_name'], array("ASCII",'UTF-8',"GB2312","GBK",'BIG5'));
         // echo $encode;
         $offset = 20;
         $page = $_GET['page']>1?($_GET['page']-1)*$offset:0;
@@ -219,9 +223,9 @@ class ForemenAction extends PublicAction {
         // $hotel = M('hotel')->where('passed = 1')->order('sort desc,id desc')->select();  // 20190215 注释
         $hotel_name = mb_substr($_SESSION['user_name'],0,4,'utf-8');
         $hotel = M('hotel')->where('passed = 1')->order('sort desc,id desc')->where(array('title' =>array("LIKE", '%' . $hotel_name . '%')))->select();
-        
+
         $isflag = $_GET['isflag'];
-        if(!$isflag){ 
+        if(!$isflag){
             $this->assign(array(
                 'waiter' => $waiter,
                 'hotel' => $hotel
@@ -292,14 +296,14 @@ class ForemenAction extends PublicAction {
     // 20190223 修改
     public function changeall() {
         if (IS_POST) {
-            dump($_POST);
+            // dump($_POST);
             // die;
             $waiter = explode(',', $_POST['id']);
             foreach ($waiter as $k => $v) {
                 if ($v) {
                     // 时薪 190223
                     $hourly_wage = M('item i')->join('ni88_waiter w ON i.waiter_id = w.id ')->join('ni88_level l ON w.level = l.id')->field('price')->where('i.id = '.$v)->find()['price'];
-                    
+
                     $offtime = $_POST['offtime'];
                     $ontime = $_POST['ontime'];
                     $hour = round((strtotime($offtime) - strtotime($ontime) ) / (60 * 60) - $_POST['break'] / 60, 2);
@@ -400,7 +404,7 @@ class ForemenAction extends PublicAction {
                     if (M('item')->where("subject_id = {$subject['id']} and waiter_id = {$v}")->find()) {
                         continue;
                     }
-                    
+
                     // 时薪     // 20190223 修改
                     $level_id = $this->finds('waiter',  'id = '. $v, 'id desc', true)['level'];
                     $hourly_wage = $this->finds('level', 'id = '. $level_id, 'id desc', true)['price'];
@@ -564,7 +568,7 @@ class ForemenAction extends PublicAction {
         }
         // dump($id);die;
         if (IS_POST) {
-            // 时薪     // 20190223 修改                    
+            // 时薪     // 20190223 修改
             $hourly_wage = M('item i')->join('ni88_waiter w ON i.waiter_id = w.id ')->join('ni88_level l ON w.level = l.id')->field('price')->where('i.id = '.$id)->find()['price'];
             $ontime = $_POST['ontime'];
             $offtime = $_POST['offtime'];
@@ -761,6 +765,93 @@ class ForemenAction extends PublicAction {
         return $unifiedOrderResult;
     }
 
+    // public function wage() {
+    //       	// cookie("err_mes", '系统维护中~');
+    //       	// return false;
+    //         set_time_limit(0);
+    //         $id = (int) $_GET['subject_id'];
+    //         $subject = M('subject')->where("id={$id} and user_id = {$this->user['id']}")->find();
+    //         if (!$subject) {
+    //             $this->redirect('foremen/index');
+    //         }
+    //         $ids = implode(',', $_GET['id']);
+    //         $time = time();
+    //         $date = date('YmdHis');
+    //         $item = M('item')->where("status != 1 and is_hs = 0 and is_con = 1 and id in ({$ids}) and subject_id = {$subject['id']}")->select();
+    //         // var_dump($item);
+    //         // die;
+    //         // 红包限额 20190223
+    //         $quota = M('web')->find()['limit'];
+    //
+    //         foreach ($item as $v) {
+    //             $waiter = M('waiter')->where("id = {$v['waiter_id']}")->find();
+    //             $send_price = 0;
+    //             if ($v['reward'] >= $quota) {
+    //                 continue;
+    //             }
+    //             $reward = $v['reward'] - $v['send_price'];
+    //             if ($reward) {
+    //                 $user = M('user')->where("id ={$this->user['id']}")->field('discount,id')->find();
+    //                 if ($user['discount'] < $reward) {
+    //                     cookie("err_mes", '当前账号余额不足！');
+    //                     $this->redirect('foremen/index');
+    //                 }
+    //             }
+    //             if ($waiter['openid']) {
+    //                 for ($i = $reward; $i >= 1; $i = $i - 200) {
+    //                     $amount = $i >= 200 ? 200 : $i;
+    //                     $ordernum = $date . rand(10000, 99999) . $waiter['id'];
+    //                     // $res = $this->send_redpack($waiter['openid'], $amount, $ordernum);
+    //                     $res = array(
+    //                         'return_code' => 'SUCCESS',
+    //                         'result_code' => 'SUCCESS'
+    //                     );
+    //                     if ($res['return_code'] == 'SUCCESS' && $res['result_code'] == 'SUCCESS') {
+    //                         $send_price += $amount;
+    //                         M('user')->where("id = {$this->user['id']}")->setDec('discount', $amount);
+    //                         M('jl')->add(array(
+    //                             'user_id' => $v['user_id'],
+    //                             'price' => $amount,
+    //                             'qy' => 1,
+    //                             'addtime' => $time,
+    //                         ));
+    //                         M('sendhb')->add(array(
+    //                             'waiter_id' => $waiter['id'],
+    //                             'user_id' => $v['user_id'],
+    //                             'amount' => $amount,
+    //                             'ordern' => $ordernum,
+    //                             'addtime' => $time,
+    //                             'item_id' => $v['id'],
+    //                             'subject_id' => $subject['id'],
+    //                             'passed' => 1,
+    //                             'msg' => $res['err_code_des'],
+    //                             'wxddbh' => $res['send_listid']
+    //                         ));
+    //                     } else {
+    //                         M('sendhb')->add(array(
+    //                             'waiter_id' => $waiter['id'],
+    //                             'user_id' => $v['user_id'],
+    //                             'amount' => $amount,
+    //                             'ordern' => $ordernum,
+    //                             'addtime' => $time,
+    //                             'item_id' => $v['id'],
+    //                             'subject_id' => $subject['id'],
+    //                             'passed' => 0,
+    //                             'msg' => $res['err_code_des'],
+    //                         ));
+    //                     }
+    //                 }
+    //                 $status = $send_price + $v['send_price'] == $v['reward'] ? 1 : 2;
+    //                 M('item')->where("id = {$v['id']}")->save(array(
+    //                     'status' => $status,
+    //                     'send_price' => $v['send_price'] + $send_price,
+    //                 ));
+    //             }
+    //         }
+    //         cookie("err_mes", '发放成功！');
+    //         $this->redirect('foremen/index', array('id' => $subject['id']));
+    //     }
+
     public function wage() {
         set_time_limit(0);
         $id = (int) $_GET['subject_id'];
@@ -769,20 +860,22 @@ class ForemenAction extends PublicAction {
             $this->redirect('foremen/index');
         }
         $ids = implode(',', $_GET['id']);
-        $time = time();
         $date = date('YmdHis');
         $item = M('item')->where("status != 1 and is_hs = 0 and is_con = 1 and id in ({$ids}) and subject_id = {$subject['id']}")->select();
         // 红包限额 20190223
         $quota = M('web')->find()['limit'];
-        
-        foreach ($item as $v) {
+        // $t1 = microtime(true);
+
+        foreach ($item as $k => $v) {
             $waiter = M('waiter')->where("id = {$v['waiter_id']}")->find();
-            $send_price = 0;
+            // $send_price = 0;
             if ($v['reward'] >= $quota) {
                 continue;
             }
+
             $reward = $v['reward'] - $v['send_price'];
-            if ($reward) {
+
+            if ($reward > 0) {
                 $user = M('user')->where("id ={$this->user['id']}")->field('discount,id')->find();
                 if ($user['discount'] < $reward) {
                     cookie("err_mes", '当前账号余额不足！');
@@ -792,10 +885,23 @@ class ForemenAction extends PublicAction {
             if ($waiter['openid']) {
                 for ($i = $reward; $i >= 1; $i = $i - 200) {
                     $amount = $i >= 200 ? 200 : $i;
+
+                    if (($item[$k]['send_price'] + $amount) > $v['reward'] ) {
+                        continue;
+                    }
                     $ordernum = $date . rand(10000, 99999) . $waiter['id'];
-                    $res = $this->send_redpack($waiter['openid'], $amount, $ordernum);
+                    // $res = $this->send_redpack($waiter['openid'], $amount, $ordernum);
+                    $res = array(
+                        'return_code' => 'SUCCESS',
+                        'result_code' => 'SUCCESS'
+                    );
+                    usleep(50000);
+                    $time = time();
+
                     if ($res['return_code'] == 'SUCCESS' && $res['result_code'] == 'SUCCESS') {
-                        $send_price += $amount;
+                        // $send_price += $amount;
+                        $item[$k]['send_price'] += $amount;
+
                         M('user')->where("id = {$this->user['id']}")->setDec('discount', $amount);
                         M('jl')->add(array(
                             'user_id' => $v['user_id'],
@@ -803,6 +909,7 @@ class ForemenAction extends PublicAction {
                             'qy' => 1,
                             'addtime' => $time,
                         ));
+
                         M('sendhb')->add(array(
                             'waiter_id' => $waiter['id'],
                             'user_id' => $v['user_id'],
@@ -815,6 +922,7 @@ class ForemenAction extends PublicAction {
                             'msg' => $res['err_code_des'],
                             'wxddbh' => $res['send_listid']
                         ));
+
                     } else {
                         M('sendhb')->add(array(
                             'waiter_id' => $waiter['id'],
@@ -827,18 +935,125 @@ class ForemenAction extends PublicAction {
                             'passed' => 0,
                             'msg' => $res['err_code_des'],
                         ));
+                        $flag = true;
+                        break;
                     }
                 }
-                $status = $send_price + $v['send_price'] == $v['reward'] ? 1 : 2;
+
+                // $status = $send_price + $v['send_price'] == $v['reward'] ? 1 : 2;
+                // M('item')->where("id = {$v['id']}")->save(array(
+                //     'status' => $status,
+                //     'send_price' => $v['send_price'] + $send_price,
+                // ));
+                // var_dump($v['send_price']);
+                // echo "<hr/>";
+                // var_dump($item[$k]['send_price']);
+                $status = $item[$k]['send_price'] ? ($item[$k]['send_price'] == $v['reward'] ? 1 : 2) : 0;
+
                 M('item')->where("id = {$v['id']}")->save(array(
                     'status' => $status,
-                    'send_price' => $v['send_price'] + $send_price,
+                    'send_price' => $item[$k]['send_price'],
                 ));
+                if ($flag) {
+                    break;
+                }
             }
         }
-        cookie("err_mes", '发放成功！');
+        // $t2 = microtime(true);
+        // echo '耗时'.round($t2-$t1,3).'秒<br>';
+        // echo 'Now memory_get_usage: ' . memory_get_usage() . '<br />';
+        // foreach ($item as $k => $v) {
+        //     $item[$k]['status'] = $v['send_price'] ? ($item[$k]['send_price'] == $v['reward'] ? 1 : 2) : 0;
+        //     var_dump($v['send_price']);
+        //     echo "<hr/>";
+        //     var_dump($item[$k]['status']);
+        //     M('item')->where("id = {$v['id']}")->save(array(
+        //         'status' => $item[$k]['status'],
+        //         'send_price' => $v['send_price'],
+        //     ));
+        // }
+        // $model = M();
+        // foreach ($item as $k => $v) {
+        //     $_item[$k]['waiter_id'] =  $v['waiter_id'];
+        //     $_item[$k]['send_price'] =  $v['send_price'];
+        //     $_item[$k]['status'] =  $v['status'];
+        // }
+        //
+        // $sql = $this->batchUpdate($_item, 'waiter_id');
+        //
+        // M()->execute($sql);
+        // file_put_contents(rand(1000,9999).'.txt', 1, FILE_APPEND);
+        $msg = $flag ? '部分发放成功,' . $res[err_code_des] : '发放成功！';
+        cookie("err_mes", $msg);
         $this->redirect('foremen/index', array('id' => $subject['id']));
     }
+
+    /**
+ * 批量更新函数
+ * @param $data array 待更新的数据，二维数组格式
+ * @param array $params array 值相同的条件，键值对应的一维数组
+ * @param string $field string 值不同的条件，默认为id
+ * @return bool|string
+ */
+function batchUpdate($data, $field, $params = [])
+{
+   if (!is_array($data) || !$field || !is_array($params)) {
+      return false;
+   }
+
+    $updates = $this->parseUpdate($data, $field);
+    $where = $this->parseParams($params);
+
+    // 获取所有键名为$field列的值，值两边加上单引号，保存在$fields数组中
+    // array_column()函数需要PHP5.5.0+，如果小于这个版本，可以自己实现，
+    // 参考地址：http://php.net/manual/zh/function.array-column.php#118831
+    $fields = array_column($data, $field);
+    $fields = implode(',', array_map(function($value) {
+        return "'".$value."'";
+    }, $fields));
+
+    $sql = sprintf("UPDATE `%s` SET %s WHERE `%s` IN (%s) %s", 'ni88_item', $updates, $field, $fields, $where);
+
+   return $sql;
+}
+
+/**
+ * 将二维数组转换成CASE WHEN THEN的批量更新条件
+ * @param $data array 二维数组
+ * @param $field string 列名
+ * @return string sql语句
+ */
+function parseUpdate($data, $field)
+{
+    $sql = '';
+    $keys = array_keys(current($data));
+
+    foreach ($keys as $column) {
+        $sql .= sprintf("`%s` = CASE `%s` \n", $column, $field);
+        foreach ($data as $line) {
+            $sql .= sprintf("WHEN '%s' THEN '%s' \n", $line[$field], $line[$column]);
+        }
+        $sql .= "END,";
+    }
+
+    return rtrim($sql, ',');
+}
+
+/**
+ * 解析where条件
+ * @param $params
+ * @return array|string
+ */
+function parseParams($params)
+{
+   $where = [];
+   foreach ($params as $key => $value) {
+      $where[] = sprintf("`%s` = '%s'", $key, $value);
+   }
+
+   return $where ? ' AND ' . implode(' AND ', $where) : '';
+}
+
 
     public function dc() {
         ob_end_clean();
@@ -858,7 +1073,7 @@ class ForemenAction extends PublicAction {
                     <td >酬劳（元）</td>
                     <td >领班返利</td>
                     <td >归还工服</td>
-                    <td >现金支付</td>				 
+                    <td >现金支付</td>
                     <td >现金支付金额（元）</td>
                     <td >是否确认</td>
                     <td >工资发放状态</td>
@@ -871,14 +1086,14 @@ class ForemenAction extends PublicAction {
             $filename .= '<tr>
 		               <td>' . ($key + 1) . '</td>
 		               <td >' . $val['username'] . '</td>
-				<td >' . $val['moble'] . '</td>	   
+				<td >' . $val['moble'] . '</td>
                                 <td >' . $val['ontime'] . '</td>
                                 <td >' . $val['offtime'] . '</td>
-                                    
+
                                 <td >' . $val['break'] . '</td>
                                 <td >' . $val['hours'] . '</td>
-				<td >' . $val['wage'] . '</td>	
-                                <td >' . $val['reward'] . '</td>	
+				<td >' . $val['wage'] . '</td>
+                                <td >' . $val['reward'] . '</td>
                                 <td >' . $val['rebate'] . '</td>
                                 <td >' . $clothes . '</td>
                                 <td >' . $pay . '</td>

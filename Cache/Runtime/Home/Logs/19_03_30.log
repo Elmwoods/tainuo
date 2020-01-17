@@ -1,0 +1,146 @@
+[ 2019-03-30T12:39:50+08:00 ] 127.0.0.1 /wz.php
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Common\common.php 第 217 行.
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000741s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000810s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Driver\Db\DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `ni8_user_sessions` [ RunTime:0.130503s ]
+SQL: INSERT INTO `ni8_user_sessions` (`sesskey`,`expiry`,`ip`,`data`) VALUES ('e33f68207a33b96fa21038a43db86c22',1553920766,'127.0.0.1','a:0:{}') [ RunTime:0.000365s ]
+SQL: DELETE FROM `ni8_user_sessions` WHERE ( userid=0 and expiry <1553920646 ) [ RunTime:0.000324s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SHOW COLUMNS FROM `ni8_web` [ RunTime:0.034586s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Core\Db.class.php 第 605 行.
+SQL: SELECT * FROM `ni8_web` WHERE ( id=1 ) ORDER BY id desc LIMIT 1   [ RunTime:0.000767s ]
+SQL: SHOW COLUMNS FROM `ni8_weixin` [ RunTime:0.024531s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Core\Db.class.php 第 605 行.
+SQL: SELECT * FROM `ni8_weixin` WHERE ( id=1 ) ORDER BY id desc LIMIT 1   [ RunTime:0.000330s ]
+NOTIC: [8] Undefined index: commission C:\Users\18679\Desktop\tainuo\20190114\Home\Lib\Action\PublicAction.class.php 第 41 行.
+NOTIC: [8] Undefined index: ucz C:\Users\18679\Desktop\tainuo\20190114\Home\Lib\Action\PublicAction.class.php 第 42 行.
+NOTIC: [8] Undefined index: uz C:\Users\18679\Desktop\tainuo\20190114\Home\Lib\Action\PublicAction.class.php 第 43 行.
+NOTIC: [8] Undefined index: umf C:\Users\18679\Desktop\tainuo\20190114\Home\Lib\Action\PublicAction.class.php 第 44 行.
+NOTIC: [8] Undefined index: order C:\Users\18679\Desktop\tainuo\20190114\Home\Lib\Action\PublicAction.class.php 第 45 行.
+NOTIC: [2] file_get_contents(http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js&amp;ip=127.0.0.1): failed to open stream: ������ӷ���һ��ʱ���û���ȷ�𸴻�ӵ����û�з�Ӧ�����ӳ���ʧ�ܡ�
+ C:\Users\18679\Desktop\tainuo\20190114\Home\Lib\Action\PublicAction.class.php 第 971 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Core\Db.class.php 第 605 行.
+SQL: SELECT * FROM `ni8_weixin` WHERE ( id=1 ) ORDER BY id desc LIMIT 1   [ RunTime:0.000501s ]
+SQL: SHOW COLUMNS FROM `ni8_weixin` [ RunTime:0.008073s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Core\Db.class.php 第 605 行.
+SQL: SELECT * FROM `ni8_weixin` WHERE ( id = 1 ) LIMIT 1   [ RunTime:0.000339s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Core\Db.class.php 第 605 行.
+SQL: SELECT * FROM `ni8_weixin` WHERE ( id=1 ) ORDER BY id desc LIMIT 1   [ RunTime:0.000305s ]
+NOTIC: [8] Undefined index: access_token C:\Users\18679\Desktop\tainuo\20190114\Home\Lib\Action\PublicAction.class.php 第 438 行.
+SQL: UPDATE `ni8_weixin` SET `access_token`=null,`gxtime`=1553920789 WHERE ( id=1 ) [ RunTime:0.000991s ]
+NOTIC: [8] Undefined index: ticket C:\Users\18679\Desktop\tainuo\20190114\Home\Lib\Action\PublicAction.class.php 第 1090 行.
+SQL: UPDATE `ni8_weixin` SET `ticket`=null,`jsapigxtime`=1553920790 WHERE ( id=1 ) [ RunTime:0.000871s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 273 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 273 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 273 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 168 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 399 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 399 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 399 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 399 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 399 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 399 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 399 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 399 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 399 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 404 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 197 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\Users\18679\Desktop\tainuo\20190114\Coretp\Lib\Template\ThinkTemplate.class.php 第 137 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.040427s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.040535s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000795s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000730s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000627s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000747s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003041s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000860s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000913s ]
+

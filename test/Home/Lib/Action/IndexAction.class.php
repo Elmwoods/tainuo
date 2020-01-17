@@ -28,41 +28,47 @@ class IndexAction extends PublicAction //extends Action
     }
 
     public function index() {//主页
-        if ($this->waiter['id']) {
-            $this->redirect('index/record');
-        }
-        if (IS_POST) {
-            $username = $_POST['username'];
-            $moble = $_POST['moble'];
-            $yzm = $_POST['yzm'];
-            if (md5(C('PASS') . $yzm) . $moble != cookie('sendcode')) {
-                cookie("err_mes", '短信验证码错误！');
-                $this->redirect('index/index');
-                exit;
-            }
-            cookie('sendcode', null);
-            $find = M('waiter')->where("moble = '{$moble}'")->find();
-            if (!$find) {
-                $id = M('waiter')->add(array(
-                    'regtime' => date('Y-m-d H:i:s'),
-                    'username' => $username,
-                    'moble' => $moble,
-                    'passed' => 1,
-                    'openid' => $_SESSION['openid'],
-                    'headimgurl' => $_SESSION['wxuser']['headimgurl']
-                ));
-                cookie("err_mes", '注册成功！');
-                $this->redirect('index/index');
-            } else {
-                M('waiter')->where("id = " . $find['id'])->save(array(
-                    'openid' => $_SESSION['openid'],
-                    'headimgurl' => $_SESSION['wxuser']['headimgurl']
-                ));
-                cookie("err_mes", '绑定成功！');
-                $this->redirect('index/index');
-            }
-        }
-        cookie('captcha', 1);
+//        if ($this->waiter['id']) {
+//            $this->redirect('index/record');
+//        }
+//        $team_id = isset($_REQUEST['teamid']) ? (int)$_REQUEST['teamid'] : '';
+//
+//        if (IS_POST) {
+//            $username = $_POST['username'];
+//            $moble = $_POST['moble'];
+//            $yzm = $_POST['yzm'];
+//            if (md5(C('PASS') . $yzm) . $moble != cookie('sendcode')) {
+//                cookie("err_mes", '短信验证码错误！');
+//                $this->redirect('index/index');
+//                exit;
+//            }
+//            cookie('sendcode', null);
+//            $find = M('waiter')->where("moble = '{$moble}'")->find();
+//            if (!$find) {
+//                $id = M('waiter')->add(array(
+//                    'regtime' => date('Y-m-d H:i:s'),
+//                    'username' => $username,
+//                    'moble' => $moble,
+//                    'passed' => 1,
+//                    'openid' => $_SESSION['openid'],
+//                    'headimgurl' => $_SESSION['wxuser']['headimgurl']
+//                ));
+//                cookie("err_mes", '注册成功！');
+//                if (!$team_id){
+//                    $this->redirect('index/index');
+//                }else{
+//                    $this->redirect('index/join', array('id' => $team_id));
+//                }
+//            } else {
+//                M('waiter')->where("id = " . $find['id'])->save(array(
+//                    'openid' => $_SESSION['openid'],
+//                    'headimgurl' => $_SESSION['wxuser']['headimgurl']
+//                ));
+//                cookie("err_mes", '绑定成功！');
+//                $this->redirect('index/index');
+//            }
+//        }
+//        cookie('captcha', 1);
         $this->display();
     }
 
@@ -132,28 +138,45 @@ class IndexAction extends PublicAction //extends Action
     }
 
     public function join() {
-
+        $team_id = isset($_REQUEST['id']) ? (int)$_REQUEST['id'] : '';
+        // dump($team_id);
+        // die;
         if (!$this->waiter['id']) {
-            $this->redirect('index/index');
+            $this->redirect('index/index', array('teamid' => $team_id));
         }
         if ($_GET['id']) {
             $id = (int) $_GET['id'];
             $subject = M('subject')->where("id = {$id}")->find();
+            // 20191213 新增
+            if (!$subject['status']) {
+                $this->msg('当前项目禁止加入!', U('index/record'));
+            }
             $date = date('Y-m-d');
             $online = M('item')->where("waiter_id = {$this->waiter['id']} and worktime = '{$date}' and is_hs = 0 and  receive_price = 0")->find();
 //            dump($online);            dump(M()->_sql());exit;
             if ($online) {
-                $this->msg('您今日已参与了其他项目！');
+                $this->msg('您今日已参与了其他项目！', U('index/record'));
             }
             if (!$subject) {
-                $this->msg('项目不存在！');
+                $this->msg('项目不存在！', U('index/record'));
             }
             if ($subject['total'] == $subject['sl']) {
-                $this->msg('项目人数已满！');
+                $this->msg('项目人数已满！', U('index/record'));
             }
-            if (M('item')->where("is_hs = 0 and subject_id = {$subject['id']} and waiter_id = {$this->waiter['id']}")->find()) {
-                $this->msg('您已加入了项目！');
+
+            // add begin
+            //if (M('item')->where("is_hs = 0 and subject_id = {$subject['id']} and waiter_id = {$this->waiter['id']}")->find()) {
+            //    $this->msg('您已加入了项目！', U('index/record'));
+            //}
+            $all_waiter = M('item')->where("is_hs = 0 and subject_id = {$subject['id']}")->getField('waiter_id', true);
+            $map['id'] = array('in', $all_waiter);
+            $waiter_names = M('waiter')->where($map)->getField('username', true);
+            $waiter_name = M('waiter')->where(['id' => $this->waiter['id']])->getField('username');
+            if (in_array($this->waiter['id'], $all_waiter) || in_array($waiter_name, $waiter_names)) {
+                $this->msg('您已加入了项目！', U('index/record'));
             }
+            // add end
+
             // 时薪 190223
             $level_id = $this->finds('waiter',  'id = '. $id, 'id desc', true)['level'];
             $hourly_wage = $this->finds('level', 'id = '. $level_id, 'id desc', true)['price'];

@@ -33,7 +33,7 @@
                                 <em style="width: 6%;float: left;text-align: center;">-</em>
                                 <input type="text" class="form-control" readonly name="end" value="<{$end}>" data-field="date" id="time2" style="width: 47%;float: left;" placeholder="结束时间"/>
                             </span>
-                        </p>   
+                        </p>
                         <p class="clearfix"  style="margin-bottom: 10px;">
                             <span class="clearfix">
                                 <select name="hotel_id" id='hotel_id' style="width:47%;float: left;margin-right: 6%"  class="form-control" >
@@ -46,7 +46,7 @@
                                     <option value="0">选择部门</option>
                                 </select>
                             </span>
-                        </p> 
+                        </p>
                         <p class="clearfix"  style="margin-bottom: 10px;">
                             <button type="submit" style="width:100%;" class="btn btn-default">搜索</button>
                         </p>
@@ -66,14 +66,14 @@
                 <foreach name="subject" item="v">
                     <li>
                         <h2><{$v.subject.title}></h2>
-                        <p>工作日期：<span><{$v.subject.worktime}></span></p>                   
+                        <p>工作日期：<span><{$v.subject.worktime}></span></p>
                         <p>地&emsp;&emsp;点：<span><{$v.hotel.title}></span></p>
                     <if condition="$v['part']">
                         <p>部&emsp;&emsp;门：<span><{$v.part.title}></span></p>
                     </if>
                     <p>工&emsp;&emsp;时：<span><{$v.hours|hour_clear}>小时</span></p>
                     <p>工&emsp;&emsp;资：<span><{$v.reward|hour_clear}>元</span></p>
-                    <p>已领金额：<span><{$v.send_price|hour_clear}>元</span></p>
+                    <p>已领金额：<span><{$v.receive_price|hour_clear}>元</span></p>
                     <if condition="$v['hours'] == 0">
                         <div><a href="<{:U('index/itemexit',array('id'=>$v['id']))}>" class="remove" rid="<{$v.id}>"><img src="__WJ__/images/del.png"/>退出项目</a></div>
                     </if>

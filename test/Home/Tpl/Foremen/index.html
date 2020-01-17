@@ -51,7 +51,7 @@
                             <em style="width: 6%;float: left;text-align: center;">-</em>
                             <input type="text" class="form-control" readonly name="end" value="<{$end}>" data-field="date" id="time2" style="width: 47%;float: left;" placeholder="结束时间"/>
                         </span>
-                    </p>   
+                    </p>
                     <p class="clearfix"  style="margin-bottom: 10px;">
                         <span class="clearfix">
                             <select name="hotel_id" id='hotel_id' style="width:47%;float: left;margin-right: 6%"  class="form-control" >
@@ -64,7 +64,7 @@
                                 <option value="0">选择部门</option>
                             </select>
                         </span>
-                    </p> 
+                    </p>
                     <p class="clearfix"  style="margin-bottom: 10px;">
                         <button type="submit" style="width:100%;" class="btn btn-default">搜索</button>
                     </p>
@@ -111,14 +111,14 @@
     </div>
     <div id="html_canvas" style="left:100%;position:fixed;top: 0; background:#fff;width:250px;height:300px;display:flex;flex-flow:column;align-items:center;padding-top:10px;margin-bottom: 10px;">
 
-        <div style="display:flex;align-items:center;margin-bottom: 5px;"><img src="__WJ__/images/logo.jpg" style="width:25px; height:25px;"/>《泰诺日结》</div>
+        <div style="display:flex;align-items:center;margin-bottom: 5px;"><img src="__WJ__/images/logo1.jpg" style="width:25px; height:25px;"/>《萌鹿兼客》</div>
         <p style="text-align:center;font-size:12px;margin-bottom: 5px;">欢迎您加入</p >
         <p  style="text-align:center;margin:0px;margin-bottom:10px;margin-bottom: 5px;" id="alert_title">${title}</p >
         <div style="background:#fff;padding:10px;position:relative;box-shadow:1px 1px 5px #ddd;">
             <div id="qrcode"style="width:150px;height:150px;">
 
             </div>
-            <img src="__WJ__/images/logo.jpg" style="width:30px;height:30px;position:absolute;top:0;left:0;bottom:0;right:0;margin:auto;"/>
+            <img src="__WJ__/images/logo1.jpg" style="width:30px;height:30px;position:absolute;top:0;left:0;bottom:0;right:0;margin:auto;"/>
         </div>
         <p style="font-size:12px;margin-top:5px;">扫描二维码，加入项目</p >
         <p style="font-size:12px;margin-top:5px;">咨询热线:0755-23614773 咨询微信:T-NO666</p >
@@ -133,7 +133,8 @@
 <script src="__WJ__/js/html2canvas.min.js"></script>
 <script src="__WJ__/js/laydate/laydate.js"></script>
 <script>
-    $('.qrcode-back').click(function () {
+function qcode(){
+    $('.qrcode-back').on('click', function () {
         var title = $(this).data('title');
         //页面层
 //        let name_time = title
@@ -146,14 +147,14 @@
 
         let str = `<div id="html_canvas" style="background:#fff;width:250px;height:300px;display:flex;flex-flow:column;align-items:center;padding-top:10px;margin-bottom: 10px;">
 
-        <div style="display:flex;align-items:center;margin-bottom: 5px;"><img src="__WJ__/images/logo.jpg" style="width:25px; height:25px;"/>《泰诺日结》</div>
+        <div style="display:flex;align-items:center;margin-bottom: 5px;"><img src="__WJ__/images/logo1.jpg" style="width:25px; height:25px;"/>《萌鹿兼客》</div>
         <p style="text-align:center;font-size:12px;margin-bottom: 5px;">欢迎您加入</p >
         <p  style="text-align:center;margin:0px;margin-bottom:10px;margin-bottom: 5px;">${title}</p >
         <div style="background:#fff;padding:10px;position:relative;box-shadow:1px 1px 5px #ddd;">
         <div id="qrcode"style="width:150px;height:150px;">
 
 </div>
-        <img src="__WJ__/images/logo.jpg" style="width:30px;height:30px;position:absolute;top:0;left:0;bottom:0;right:0;margin:auto;"/>
+        <img src="__WJ__/images/logo1.jpg" style="width:30px;height:30px;position:absolute;top:0;left:0;bottom:0;right:0;margin:auto;"/>
         </div>
         <p style="font-size:12px;margin-top:5px;">扫描二维码，加入项目</p >
         <p style="font-size:12px;margin-top:5px;">咨询热线:0755-23614773 <咨询></咨询>微信:T-NO666</p >
@@ -162,6 +163,7 @@
         var id = $(this).data('id');
         var domain = document.domain;
         var url = "http://" + domain + "/test/wz.php/index_join_id_" + id;
+        console.log(url);
         $('#alert_title').text(title);
         $('#qrcode').html("")
         var qrcode = new QRCode(document.getElementById("qrcode"), {
@@ -188,17 +190,19 @@
             //			            document.body.appendChild(canvas);
         })
 
-        laydate.render({
-            elem: '#time1'
-        });
-        laydate.render({
-            elem: '#time2'
-        });
+
 //        console.log(id);
 //        console.log(url);
     });
+}
+qcode();
 
-
+laydate.render({
+    elem: '#time1'
+});
+laydate.render({
+    elem: '#time2'
+});
 </script>
 <script>
     let obj = {
@@ -283,12 +287,13 @@
                         <p>现场人数：<span>${v.total|| 0}人</span></p>
                         <p>项目人数：<span>${v.sl|| 0}人</span></p>
                         <p>考勤人数：<span>${v.kq_sl|| 0}人</span></p>
-                           ${getPassed(v.passed)}
+                           ${getPassed(v)}
                     </li>
 `;
                 });
                 $('#list-item').append(str);
                 $('.spinner-snake').remove();
+                qcode();
             },
             error: function (error) {
                 //alert("NETWORK ERROR!");
@@ -305,8 +310,8 @@
         return part ? `<p>部&emsp;&emsp;门：<span>${part.title}</span></p>` : '';
     }
 
-    function getPassed(passed){
-        return passed == 1 ? `<div><a href="<{:U('foremen/dc',array('id'=>$v['id']))}>" ><img src="__WJ__/images/dc.png"/>导出</a><a href="<{:U('foremen/changeitem',array('id'=>$v['id']))}>" ><img src="__WJ__/images/edi.png"/>编辑</a><a href="<{:U('foremen/flist',array('id'=>$v['id']))}>"><img src="__WJ__/images/ment.png"/>管理</a></div>` : '<div><a >项目未审核</a></div>';
+    function getPassed(v){
+        return  v.passed == 1 ? `<div><a href="javascript:void(0);" class="qrcode-back" data-title="${v.title}" data-id="${v.id}">分享</a><a href="/test/wz.php/foremen_dc_id_${v.id}.html" ><img src="__WJ__/images/dc.png"/>导出</a><a href="/test/wz.php/foremen_changeitem_id_${v.id}.html" ><img src="__WJ__/images/edi.png"/>编辑</a><a href="/test/wz.php/foremen_flist_id_${v.id}.html"><img src="__WJ__/images/ment.png"/>管理</a></div>` : '<div><a >项目未审核</a></div>';
     }
 
     function throttle(func, wait, mustRun) {

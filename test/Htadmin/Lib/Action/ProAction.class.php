@@ -237,10 +237,10 @@ class ProAction extends PublicAction {
 
         $where = " and ni88_subject.passed = 1 ";
         if ($ks) {
-            $where .= " and (worktime >= '{$ks}' )";
+            $where .= " and (ni88_subject.worktime >= '{$ks}' )";
         }
         if ($js) {
-            $where .= " and (worktime < '{$js}' )";
+            $where .= " and (ni88_subject.worktime < '{$js}' )";
         }
         if (!empty($_GET['title'])) {
             $where .= " and (ni88_subject.title like '%" . $_GET['title'] . "%' )";
@@ -264,15 +264,15 @@ class ProAction extends PublicAction {
         $reward = M('subject')->where(' 1 ' . $where)->join('left join ni88_user on ni88_user.id = ni88_subject.user_id left join ni88_hotel on ni88_hotel.id = ni88_subject.hotel_id')->sum('ni88_subject.reward');
         $hours = M('subject')->where(' 1 ' . $where)->join('left join ni88_user on ni88_user.id = ni88_subject.user_id left join ni88_hotel on ni88_hotel.id = ni88_subject.hotel_id')->sum('ni88_subject.hours');
         // 新增
-        $tarrs = M('subject')->where(' 1 ' .$where)->field('ni88_subject.*,ni88_user.username,ni88_user.nickname,ni88_hotel.title as hotel')->join( 'left join ni88_user on ni88_user.id = ni88_subject.user_id left join ni88_hotel on ni88_hotel.id = ni88_subject.hotel_id')->order('ni88_subject.worktime desc,ni88_subject.id desc')->select();
-        $kq_sum = 0;
-        foreach($tarrs as $k => $v){
-            $kq_num = M('item')->where("subject_id = {$v['id']} and is_con = 1 and is_hs = 0")->count();
-            $kq_sum += $kq_num;
-        }
-        foreach($arr['list'] as $k => $v){
+        $tarrs = M('subject')
+        ->where('ni88_item.is_con = 1 and ni88_item.is_hs = 0'. $where )
+        ->field('count(*) as kq_sum')
+        ->join('left join ni88_item on ni88_item.subject_id = ni88_subject.id')
+        ->order('ni88_subject.worktime desc,ni88_subject.id desc')
+        ->select();
+        $kq_sum = $tarrs[0]['kq_sum'];
+      	foreach($arr['list'] as $k => $v){
             $arr['list'][$k]['kq_num'] = M('item')->where("subject_id = {$v['id']} and is_con = 1 and is_hs = 0")->count();
-            // $kq_sum += $arr['list'][$k]['kq_num'];
         }
         
         $this->assign('reward', $reward);
@@ -645,7 +645,7 @@ class ProAction extends PublicAction {
         $this->assign('arr', $arry);
         $this->assign('fpage', $arr['show']);
         $this->assign('count', $arr['count']);
-        $this->assign('sum',$arr['count']);
+        $this->assign('sum',$arr['sum']);
         $this->display();
     }
 
@@ -837,6 +837,18 @@ class ProAction extends PublicAction {
         $this->display();
     }
 
+    /**
+     * 是否开启或关闭项目
+     */
+    public function enable(){
+        $subject_id = (int)$_GET['id'];
+        $status     = (int)$_GET['status'];
+        $res = M('subject')->where("id = {$subject_id}")->save(['status' => $status ? 0 : 1]);
+        if ($res === false){
+            echo "<script>window.alert('修改失败')</script>"; 
+        }
+        echo "<script language='javascript'>location='" . $this->ly . "';</script>";
+    }
 }
 
 ?>

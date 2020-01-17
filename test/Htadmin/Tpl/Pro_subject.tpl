@@ -135,6 +135,7 @@
                                 <td><{:date('Y-m-d H:i:s',$vo['addtime'])}></td>
                                 <td>
                                     <span>[<a href="<{:C('web_url')}>__APP__/pro_sublist.html?id=<{$vo.id}>">详情</a>]</span>&nbsp;
+                                    <span>[<a href="<{:C('web_url')}>__APP__/pro_enable?id=<{$vo.id}>&status=<{$vo.status}>" ><if condition="$vo['status'] == 1">冻结<else/>开启</if>项目</a>]</span>&nbsp;
                                     <!--<span>[<a href="<{:C('web_url')}>__APP__/pro_subject.html?id=<{$vo.id}>"  onClick="return ConfirmDel();">删除</a>]</span>&nbsp;-->
                                 </td>
                             </tr>				  

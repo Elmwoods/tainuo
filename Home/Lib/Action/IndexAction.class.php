@@ -10,7 +10,8 @@ class IndexAction extends PublicAction {
     }
 
     public function index() {//主页
-        if (IS_POST) {
+        $this->display();
+        /*if (IS_POST) {
             $username = $_POST['username'];
             $moble = $_POST['moble'];
             $yzm = $_POST['yzm'];
@@ -36,11 +37,24 @@ class IndexAction extends PublicAction {
             }
         }
         cookie('captcha', 1);
-        $this->display();
+        $this->display();*/
     }
 
     
     public function test() {
+        $subject['id']  = 9759;
+        $all_waiter = M('item')->where("is_hs = 0 and subject_id = {$subject['id']}")->getField('waiter_id', true);
+//            $all_waiter = array_column($item, 'waiter_id');
+        var_dump($all_waiter);
+        $map['waiter_id'] = array('in', $all_waiter);
+        $waiter_names = M('waiter')->where($map)->getField('user_name', true);
+        var_dump($waiter_names);
+        $waiter_name = M('waiter')->where(['waiter_id', $this->waiter['id']])->getField('user_name');
+        var_dump($waiter_name);
+        if (in_array($this->waiter['id'], $all_waiter) || in_array($waiter_name, $waiter_names)) {
+            $this->msg('您已加入了项目！', U('index/record'));
+        }
+exit();
         $this->assign('err', '测试');
         $this->display();
     }
